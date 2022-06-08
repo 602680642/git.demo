@@ -75,7 +75,7 @@ const { Sider } = Layout;
              margin: '16px',
              backgroundColor: 'rgba(255, 255, 255, 0.3)',
              
-           }}><h2 style={{textAlign:'center',letterSpacing:'1px'}}>新闻发布系统</h2></div>
+           }}><h2 style={{textAlign:'center',letterSpacing:'1px'}}>{collapsed ? '新闻' :'新闻发布系统'}</h2></div>
            <Menu
             mode="inline"
             style={{ height: '100%', borderRight: 0 }}

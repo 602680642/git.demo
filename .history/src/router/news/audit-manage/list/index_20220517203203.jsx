@@ -1,0 +1,53 @@
+import React,{useEffect,useState} from 'react'
+import {Table} from 'antd'
+import axios from 'axios'
+export default function AuditList() {
+
+  const {username} = JSON.parse(localStorage.getItem('token'))
+  const [dataSource,setdataSource] = useState([])
+  useEffect(()=>{
+     
+    axios.get(`/news?author=${username}&auditState_ne=0&publishState_lte=1&_expand=categroy`
+    ).then(res =>{
+
+        console.log(res.data)
+        setdataSource(res.data)
+    })
+
+  },[username])
+
+  const columns = [
+    {
+      title: '新闻标题',
+      dataIndex: 'title',
+      
+    },
+    {
+      title: '作者',
+      dataIndex: 'author',
+     
+    },
+    {
+      title: '新闻分类',
+      dataIndex: 'categ',
+      render:(key)=> <Tag color = 'blue'>{key}</Tag>
+    },
+
+    {
+      title: '操作',
+      
+      render:(items)=>{
+
+        return <div>
+           <Button danger  onClick={()=> delItem(items)} shape='circle' icon = {<DeleteOutlined/>} style = {{marginRight:'10px'}}/>
+           
+        </div>
+      }
+    },
+  ];
+  return (
+
+    <Table rowKey={(items) => items.id} dataSource={dataSource} columns={columns} pagination = {{pageSize:5}}/>
+
+  )  
+}

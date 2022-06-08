@@ -27,6 +27,17 @@ $http.beforeRequest = function (option){
 		
 		tiele:'数据加载中...'
 	})
+	
+	//判断请求的是否为有权限的接口
+	/*if(option.url.indexOf('/my/') !== -1){
+		
+		//为请求头添加身份认证字段
+		option.header = {
+			
+			//字段的值可以直接从VueX中获取
+			Authorization:store.state.m_user.token
+		}
+	}*/
 }
 //配置响应拦截器
 

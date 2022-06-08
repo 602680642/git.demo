@@ -48,17 +48,22 @@
 			// 选择收货地址
 			// 选择收货地址
 			async chooseAddress() {
-				// 1. 调用小程序提供的 chooseAddress() 方法，即可使用选择收货地址的功能
+				
+				
+				// 1. 调用小程序提供的 chooseAddress() 方法，即可使用选择收货地址的功能(暂未开通，无法授权，直接选择)
 				//    返回值是一个数组：第1项为错误对象；第2项为成功之后的收货地址对象
 				const [err, succ] = await uni.chooseAddress().catch(err => err)
-
+                
+				
 				// 2. 用户成功的选择了收货地址
 				if (succ && succ.errMsg === 'chooseAddress:ok') {
-					console.log(succ);
+					
 					// 更新 vuex 中的收货地址
 					this.updateAddress(succ)
 				}
-
+                
+				
+				
 				// 3. 用户没有授权
 				if (err && (err.errMsg === 'chooseAddress:fail auth deny' || err.errMsg ===
 						'chooseAddress:fail authorize no response')) {
@@ -100,17 +105,7 @@
 		    // 将 m_user 模块中的 addstr 映射到当前组件中使用
 		    ...mapGetters('m_user', ['addstr'])
 		
-			// 收货详细地址的计算属性
-			/*addstr() {
 			
-				if (!this.address.provinceName) return ''
-			
-				// 拼接 省，市，区，详细地址 的字符串并返回给用户
-				return this.address.provinceName + this.address.cityName + this.address.countyName + this.address
-					.detailInfo
-			
-			
-			}*/
 		}
 	}
 </script>

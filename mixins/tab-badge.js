@@ -9,7 +9,15 @@ import {mapGetters} from 'vuex'
 		onShow() {
 			this.setTab()
 		},
-		
+		watch:{
+			
+			total(){
+				
+				this.setTab()
+			}
+			
+			
+		},
 		methods:{
 			
 			setTab(){

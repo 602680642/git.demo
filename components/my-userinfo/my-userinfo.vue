@@ -2,8 +2,8 @@
   <view class="my-userinfo-container">
     <!-- 头像和昵称区域 -->
     <view class="top-box">
-      <image src="/static/head.jpg" class="avatar"></image>
-      <view class="nickname">zhy</view>
+      <image :src="userinfo.avatarUrl" class="avatar"></image>
+      <view class="nickname">{{userinfo.nickName}}</view>
     </view>
 
     <!-- 面板区域 -->
@@ -66,7 +66,7 @@
           <uni-icons type="arrowright" size="15"></uni-icons>
         </view>
         <view class="panel-list-item" @click="logout">
-          <text @click="loginout">退出登录</text>
+          <text>退出登录</text>
           <uni-icons type="arrowright" size="15"></uni-icons>
         </view>
       </view>
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-	import{} from 'vuex'
+	import{mapMutations,mapState} from 'vuex'
 	export default {
 		name:"my-userinfo",
 		data() {
@@ -83,9 +83,14 @@
 				
 			};
 		},
-		methods:{
+		computed:{
 			
-			async  loginout(){
+			...mapState('m_user',['userinfo'])
+		},
+		methods:{
+			...mapMutations('m_user',['updateUserInfo','updateAddress','updateToken']),
+			
+			async logout(){
 				
 				//提示是否退出登录
 				const [err,succ] = await uni.showModal({
@@ -96,6 +101,12 @@
 				if(succ && succ.confirm) {
 					
 					//清除所有相关信息
+					this.updateAddress({})
+					
+					
+					this.updateUserInfo({})
+					this.updateToken('')
+					
 				}
 			}
 		}

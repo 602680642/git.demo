@@ -50,7 +50,7 @@
 			    const {data:res} = await uni.$http.get('/goods/search',this.quObj)
 			  	//关闭节流阀
 				this.isloading = false
-				console.log(11);
+				
 				// 只要数据请求完毕，就立即按需调用 cb 回调函数
 				cb && cb()
 				

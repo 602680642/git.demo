@@ -56,6 +56,7 @@
 			
 			...mapState('m_cart',['cart'])
 			
+			
 		},
 		
 		
@@ -82,7 +83,10 @@
 </script>
 
 <style lang="scss">
-
+.cart-container{
+	
+	padding-bottom: 50px;
+}
 .cart-title {
 		height: 40px;
 		display: flex;
@@ -120,7 +124,7 @@
 	
 	display: flex;
 	
-	width: 150rpx;
+	width: 140rpx;
 	
 	justify-content: center;
 	

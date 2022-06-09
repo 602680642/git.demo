@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+## 此项目的数据用的json-server，小伙伴可以先开启下json-server再打开项目哦，运行：json-server --watch db.json
+
 In the project directory, you can run:
 
 ### `npm start`
